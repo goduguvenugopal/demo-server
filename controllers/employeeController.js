@@ -2,16 +2,16 @@ const Employee = require('../models/Employee');
 
 const createEmployee = async (req, res) => {
     try {
-        const { name, number, address } = req.body;
+        const { name, phone, address } = req.body;
 
         // Input validation
-        if (!name || !number || !address) {
-            return res.status(400).json({ message: 'Name, number, and address are required fields.' });
+        if (!name || !phone || !address) {
+            return res.status(400).json({ message: 'Name, phone, and address are required fields.' });
         }
 
         const employee = new Employee({
             name,
-            number,
+            phone,
             address
         });
 

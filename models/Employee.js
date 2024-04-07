@@ -6,7 +6,7 @@ const employeeSchema = new mongoose.Schema({
     required: true,
   },
 
-  number: {
+  phone: {
     type: Number,
     required: true,
   },
