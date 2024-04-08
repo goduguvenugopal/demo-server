@@ -25,14 +25,15 @@ const createEmployee = async (req, res) => {
   }
 };
 
-const getEmployess = async (res , req) => {
-  try {
-    const employees = await Employee.find();
-    res.status(200).json(employees);
-  } catch(error) {
-    console.error("there is an error :", error);
-    res.status(500).json({ message: "server error" });
-  }
-};
+const getEmployees = async (req, res) => {
+    try {
+      const employees = await Employee.find();
+      res.status(200).json(employees);
+    } catch(error) {
+      console.error("There is an error:", error);
+      res.status(500).json({ message: "Server error" });
+    }
+  };
+  
 
 module.exports = { createEmployee, getEmployess };
