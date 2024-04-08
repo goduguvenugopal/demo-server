@@ -25,11 +25,11 @@ const createEmployee = async (req, res) => {
   }
 };
 
-const getEmployess = async () => {
+const getEmployess = async (res , req) => {
   try {
     const employees = await Employee.find();
     res.status(200).json(employees);
-  } catch (error) {
+  } catch(error) {
     console.error("there is an error :", error);
     res.status(500).json({ message: "server error" });
   }
