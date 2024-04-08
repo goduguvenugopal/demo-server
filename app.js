@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 dotEnv.config();
 
 const corsOptions = {
-  origin: "https://vkzomato.netlify.app",
+  origin: "*",
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
