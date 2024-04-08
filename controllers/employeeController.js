@@ -36,4 +36,4 @@ const getEmployees = async (req, res) => {
   };
   
 
-module.exports = { createEmployee, getEmployess };
+module.exports = { createEmployee, getEmployees };
