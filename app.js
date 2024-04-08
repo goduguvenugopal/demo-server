@@ -4,24 +4,20 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dotEnv = require("dotenv");
 const employeeRoutes = require("./routes/employeeRoutes");
-const cors = require('cors')
-
- 
+const cors = require("cors");
 
 const port = process.env.PORT || 7000;
 
 app.use(bodyParser.json());
 
 dotEnv.config();
- 
+
 const corsOptions = {
-  origin: 'https://vkzomato.netlify.app',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  origin: "https://vkzomato.netlify.app",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 };
-
- 
 
 app.use(cors(corsOptions));
 
