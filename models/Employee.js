@@ -5,7 +5,6 @@ const employeeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
   phone: {
     type: Number,
     required: true,
@@ -16,4 +15,17 @@ const employeeSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Employee", employeeSchema);
+const userSchema = new mongoose.Schema({
+  text: {
+    type: String,
+    required: true,
+  }
+});
+
+const Employee = mongoose.model("Employee", employeeSchema);
+const User = mongoose.model("User", userSchema);
+
+module.exports = {
+  Employee,
+  User
+};
