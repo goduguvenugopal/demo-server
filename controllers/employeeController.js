@@ -63,4 +63,17 @@ const getEmployees = async (req, res) => {
   }
 };
 
-module.exports = { createEmployee, getEmployees, createUser, getUser };
+
+const deleteUsers = async (req, res) => {
+  try {
+    const delUsers = await User.deleteMany({});
+    res.status(200).json(delUsers);
+  } catch (error) {
+    console.error("There is an error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+}
+
+
+
+module.exports = { createEmployee, getEmployees, createUser, getUser,deleteUsers };
