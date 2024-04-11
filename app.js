@@ -24,7 +24,7 @@ dotEnv.config();
 
  
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 mongoose
   .connect(process.env.MONGO_DB)
