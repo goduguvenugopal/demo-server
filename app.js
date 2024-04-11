@@ -10,15 +10,17 @@ const cors = require("cors");
 const port = process.env.PORT || 7000;
 app.use(express.static('public'));
 app.use(bodyParser.json());
-
+app.use(cors())
 dotEnv.config();
 
-const corsOptions = {
-  origin: "*",
-  methods:"*",
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
-};
+
+
+// const corsOptions = {
+//   origin: "*",
+//   methods:"*",
+//   allowedHeaders: ["Content-Type", "Authorization"],
+//   credentials: true,
+// };
 
  
 

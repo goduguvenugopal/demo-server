@@ -46,7 +46,7 @@ const createUser = async (req, res) => {
 
 const getUser = async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find({});
     res.status(200).json(users);
   } catch (error) {
     console.error("There is an error:", error);
@@ -56,7 +56,7 @@ const getUser = async (req, res) => {
 
 const getEmployees = async (req, res) => {
   try {
-    const employees = await Employee.find();
+    const employees = await Employee.find({});
     res.status(200).json(employees);
   } catch (error) {
     console.error("There is an error:", error);
