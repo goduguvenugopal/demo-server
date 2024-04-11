@@ -80,7 +80,7 @@ const delUserById = async (req, res) => {
     if (!deletedUser) {
       return res.status(404).json({ message: "User not found" });
     }
-    res.status(200).send();
+    res.status(204).send();
   } catch (error) {
     console.error("Error deleting user:", error);
     res.status(500).json({ message: "Server error", error: error.message });
