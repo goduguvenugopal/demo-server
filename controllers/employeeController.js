@@ -76,13 +76,17 @@ const deleteUsers = async (req, res) => {
 
 const delUserById = async (req, res) => {
   try {
-    await User.findByIdAndDelete(req.params.id);
+    const deletedUser = await User.findByIdAndDelete(req.params.id);
+    if (!deletedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
     res.status(204).send();
   } catch (error) {
-    console.error("There is an error:", error);
-    res.status(500).json({ message: "Server error" });
+    console.error("Error deleting user:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
 
 module.exports = {
   createEmployee,
