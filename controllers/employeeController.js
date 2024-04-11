@@ -77,7 +77,7 @@ const deleteUsers = async (req, res) => {
 const delUserById = async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);
-    res.status(205).send();
+    res.status(204).send();
   } catch (error) {
     console.error("There is an error:", error);
     res.status(500).json({ message: "Server error" });
