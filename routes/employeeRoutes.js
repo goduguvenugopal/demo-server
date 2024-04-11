@@ -8,5 +8,6 @@ router.get("/get-emp", employeeController.getEmployees);
 router.post("/add-user", employeeController.createUser);
 router.get("/get-user", employeeController.getUser);
 router.delete("/delete-user", employeeController.deleteUsers);
+router.delete("/deluserbyid/:id", employeeController.delUserById);
 
 module.exports = router;

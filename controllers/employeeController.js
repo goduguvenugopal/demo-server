@@ -1,4 +1,5 @@
 const { Employee, User } = require("../models/Employee");
+const { use } = require("../routes/employeeRoutes");
 
 const createEmployee = async (req, res) => {
   try {
@@ -63,7 +64,6 @@ const getEmployees = async (req, res) => {
   }
 };
 
-
 const deleteUsers = async (req, res) => {
   try {
     const delUsers = await User.deleteMany({});
@@ -72,8 +72,23 @@ const deleteUsers = async (req, res) => {
     console.error("There is an error:", error);
     res.status(500).json({ message: "Server error" });
   }
-}
+};
 
+const delUserById = async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    res.status(205).send();
+  } catch (error) {
+    console.error("There is an error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
 
-
-module.exports = { createEmployee, getEmployees, createUser, getUser,deleteUsers };
+module.exports = {
+  createEmployee,
+  getEmployees,
+  createUser,
+  getUser,
+  deleteUsers,
+  delUserById
+};
