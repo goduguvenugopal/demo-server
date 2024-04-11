@@ -15,21 +15,22 @@ const employeeSchema = new mongoose.Schema({
   },
 });
 
-const userSchema = new mongoose.Schema({
-  
-  text: {
-    type: String,
-    required: true,
+const userSchema = new mongoose.Schema(
+  {
+    text: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
   }
-},{
-  timestamps : true,
-  
-});
+);
 
 const Employee = mongoose.model("Employee", employeeSchema);
 const User = mongoose.model("User", userSchema);
 
 module.exports = {
   Employee,
-  User
+  User,
 };
