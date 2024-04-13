@@ -100,7 +100,7 @@ const updateUserById = async (req, res) => {
   try {
     const { text } = req.body;
 
-    const updateById = await User.findByIdAndDelete(req.params.id, { text });
+    const updateById = await User.findByIdAndUpdate(req.params.id, { text });
     if (!updateById) {
       return res.status(400).json({ message: "user not found" });
     }
