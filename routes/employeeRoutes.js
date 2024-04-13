@@ -10,5 +10,6 @@ router.get("/get-user", employeeController.getUser);
 router.delete("/delete-user", employeeController.deleteUsers);
 router.delete("/deluserbyid/:id", employeeController.delUserById);
 router.get("/getuserbyid/:id", employeeController.getUserById);
+router.get("/updateuserbyid/:id", employeeController.updateUserById);
 
 module.exports = router;

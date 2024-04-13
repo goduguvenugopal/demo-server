@@ -96,6 +96,21 @@ const delUserById = async (req, res) => {
   }
 };
 
+const updateUserById = async (req, res) => {
+  try {
+    const { text } = req.body;
+
+    const updateById = await User.findByIdAndDelete(req.params.id, { text });
+    if (!updateById) {
+      return res.status(400).json({ message: "user not found" });
+    }
+    res.status(200).json(updateById);
+  } catch (error) {
+    console.error("error updating user :", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
 module.exports = {
   createEmployee,
   getEmployees,
@@ -103,5 +118,6 @@ module.exports = {
   getUser,
   deleteUsers,
   delUserById,
-  getUserById
+  getUserById,
+  updateUserById
 };
