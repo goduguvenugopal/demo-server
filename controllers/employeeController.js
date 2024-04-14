@@ -139,6 +139,26 @@ const findByOneEmp = async (req, res) => {
   }
 };
 
+const updateByIdEmp = async (req, res) => {
+  try {
+    const { name, phone, address } = req.body;
+
+    const updateById = await Employee.findByIdAndUpdate(req.params.id, {
+      name,
+      phone,
+      address,
+    });
+
+    if (!updateById) {
+      res.status(400).json({ message: "user not found" });
+    }
+    res.status(200).json(updateById);
+  } catch (error) {
+    console.error("error to find user :", error);
+    res.status(500).json({ message: "server error" });
+  }
+};
+
 module.exports = {
   createEmployee,
   getEmployees,
@@ -149,5 +169,6 @@ module.exports = {
   getUserById,
   updateUserById,
   delByIdEmp,
-  findByOneEmp
+  findByOneEmp,
+  updateByIdEmp
 };

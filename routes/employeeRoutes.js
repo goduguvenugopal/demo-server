@@ -13,5 +13,6 @@ router.delete("/deluserbyid/:id", employeeController.delUserById);
 router.get("/getuserbyid/:id", employeeController.getUserById);
 router.put("/updateuserbyid/:id", employeeController.updateUserById);
  router.post("/getempbyphone",employeeController.findByOneEmp)
+ router.put("/updatebyidemp/:id",employeeController.updateByIdEmp)
 
 module.exports = router;
