@@ -111,6 +111,21 @@ const updateUserById = async (req, res) => {
   }
 };
 
+const delByIdEmp = async (req , res)=>{
+  try{
+    const  delById = await Employee.findByIdAndDelete(req.params.id)  
+
+    if(!delById){
+      res.status(400).json({message : "user  not found"})
+    }
+    res.status(200).json(delById)
+  }catch(error){
+    console.error("error deleting user :", error)
+    res.status(500).json({message : " server error"})
+  }
+}
+
+
 module.exports = {
   createEmployee,
   getEmployees,
@@ -119,5 +134,6 @@ module.exports = {
   deleteUsers,
   delUserById,
   getUserById,
-  updateUserById
+  updateUserById,
+  delByIdEmp
 };
