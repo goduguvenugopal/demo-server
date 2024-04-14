@@ -12,6 +12,6 @@ router.delete("/delete-user", employeeController.deleteUsers);
 router.delete("/deluserbyid/:id", employeeController.delUserById);
 router.get("/getuserbyid/:id", employeeController.getUserById);
 router.put("/updateuserbyid/:id", employeeController.updateUserById);
- 
+ router.post("/getempbyphone",employeeController.findByOneEmp)
 
 module.exports = router;

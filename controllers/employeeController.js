@@ -111,20 +111,33 @@ const updateUserById = async (req, res) => {
   }
 };
 
-const delByIdEmp = async (req , res)=>{
-  try{
-    const  delById = await Employee.findByIdAndDelete(req.params.id)  
+const delByIdEmp = async (req, res) => {
+  try {
+    const delById = await Employee.findByIdAndDelete(req.params.id);
 
-    if(!delById){
-      res.status(400).json({message : "user  not found"})
+    if (!delById) {
+      res.status(400).json({ message: "user  not found" });
     }
-    res.status(200).json(delById)
-  }catch(error){
-    console.error("error deleting user :", error)
-    res.status(500).json({message : " server error"})
+    res.status(200).json(delById);
+  } catch (error) {
+    console.error("error deleting user :", error);
+    res.status(500).json({ message: " server error" });
   }
-}
+};
 
+const findByOneEmp = async (req, res) => {
+  try {
+    const { phone } = req.body;
+    const findOneEmp = await Employee.findOne({ phone: phone });
+    if (!findOneEmp) {
+      res.status(400).json({ message: " user not found" });
+    }
+    res.status(200).json(findOneEmp);
+  } catch (error) {
+    console.error("error to find user :", error);
+    res.status(500).json({ message: "server error" });
+  }
+};
 
 module.exports = {
   createEmployee,
@@ -135,5 +148,6 @@ module.exports = {
   delUserById,
   getUserById,
   updateUserById,
-  delByIdEmp
+  delByIdEmp,
+  findByOneEmp
 };
