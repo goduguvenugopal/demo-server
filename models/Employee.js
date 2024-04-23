@@ -31,8 +31,8 @@ const userSchema = new mongoose.Schema(
 // image schema 
 
 const imageSchema = new mongoose.Schema({
-  data: req.file.buffer,
-  contentType: req.file.mimetype,
+  data: buffer,
+  contentType: String,
 })
 
 
