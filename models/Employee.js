@@ -27,10 +27,24 @@ const userSchema = new mongoose.Schema(
   }
 );
 
+ 
+// image schema 
+
+const imageSchema = new mongoose.Schema({
+  data: req.file.buffer,
+  contentType: req.file.mimetype,
+})
+
+
+
+
 const Employee = mongoose.model("Employee", employeeSchema);
 const User = mongoose.model("User", userSchema);
+const Image = mongoose.model("Image", imageSchema)
+
 
 module.exports = {
   Employee,
   User,
+  Image
 };

@@ -1,4 +1,4 @@
-const { Employee, User } = require("../models/Employee");
+const { Employee, User ,Image} = require("../models/Employee");
 
 const createEmployee = async (req, res) => {
   try {
@@ -159,6 +159,32 @@ const updateByIdEmp = async (req, res) => {
   }
 };
 
+
+// image post method controller logic code 
+
+const uploadImage = async (req , res )=>{
+  try{
+    const image = new Image({
+      data: req.file.buffer,
+      contentType: req.file.mimetype,
+    })
+
+    await image.save();
+    res.status(200).json(image)
+
+  }catch(error){
+    console.log(error)
+    res.status(500).json({message : "server error"})
+  }
+}
+
+// image post method controller logic code 
+
+
+
+
+
+
 module.exports = {
   createEmployee,
   getEmployees,
@@ -170,5 +196,6 @@ module.exports = {
   updateUserById,
   delByIdEmp,
   findByOneEmp,
-  updateByIdEmp
+  updateByIdEmp,
+  uploadImage
 };
