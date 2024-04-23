@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema(
 // image schema 
 
 const imageSchema = new mongoose.Schema({
-  data: buffer,
+  data: Buffer,
   contentType: String,
 })
 
