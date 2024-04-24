@@ -47,7 +47,7 @@ const createUser = async (req, res) => {
 
     const image = req.file ? req.file.filename : undefined;
 
-    if (!text || !image) {
+    if (!text) {
       return res.status(400).json({ message: "Text is a required field." });
     }
     const user = new User({
