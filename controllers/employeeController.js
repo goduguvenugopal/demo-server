@@ -37,7 +37,7 @@ const createEmployee = async (req, res) => {
 // Set up Multer storage
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null,  path.join(__dirname, "uploads/")); // Destination folder for uploaded files
+    cb(null,  path.join(__dirname, "/uploads")); // Destination folder for uploaded files
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname); // Use original file name
