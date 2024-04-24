@@ -28,17 +28,20 @@ const createEmployee = async (req, res) => {
 
 // multer function code
 
-// Set up Multer storage
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/"); // Destination folder for uploaded files
+    // Set the destination folder for uploaded files
+    cb(null, "uploads/images/"); // Save files in 'uploads/images/' directory
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname); // Use original file name
+    // Generate a unique filename for the uploaded file
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    // Use the unique filename to avoid conflicts
+    cb(null, uniqueSuffix + '-' + file.originalname);
   },
 });
 
-// Initialize Multer with storage options
+// Initialize Multer with the custom storage options
 const upload = multer({ storage: storage });
 
 const createUser = async (req, res) => {
