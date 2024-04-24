@@ -6,7 +6,6 @@ const express = require('express');
 const app = express();
  
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
  
 const createEmployee = async (req, res) => {
   try {
@@ -47,6 +46,10 @@ const storage = multer.diskStorage({
 
 // Initialize Multer with storage options
 const upload = multer({ storage: storage });
+
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+ 
 
 const createUser = async (req, res) => {
   try {
