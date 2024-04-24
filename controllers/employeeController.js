@@ -1,6 +1,12 @@
 const { Employee, User, Image } = require("../models/Employee");
 const multer = require("multer");
+const path = require('path');
+const fs = require('fs');
+const express = require('express');
+const app = express();
  
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
  
 const createEmployee = async (req, res) => {
   try {
