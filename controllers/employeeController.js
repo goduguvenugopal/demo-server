@@ -1,4 +1,5 @@
-const { Employee, User ,Image} = require("../models/Employee");
+const { Employee, User, Image } = require("../models/Employee");
+const multer = require("multer");
 
 const createEmployee = async (req, res) => {
   try {
@@ -25,14 +26,33 @@ const createEmployee = async (req, res) => {
   }
 };
 
+// multer function code
+
+// Set up Multer storage
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/"); // Destination folder for uploaded files
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname); // Use original file name
+  },
+});
+
+// Initialize Multer with storage options
+const upload = multer({ storage: storage });
+
 const createUser = async (req, res) => {
   try {
     const { text } = req.body;
-    if (!text) {
+
+    const image = req.file ? req.file.filename : undefined;
+
+    if (!text || !image) {
       return res.status(400).json({ message: "Text is a required field." });
     }
     const user = new User({
       text,
+      image,
     });
 
     await user.save();
@@ -159,36 +179,29 @@ const updateByIdEmp = async (req, res) => {
   }
 };
 
+// image post method controller logic code
 
-// image post method controller logic code 
-
-const uploadImage = async (req , res )=>{
-  try{
+const uploadImage = async (req, res) => {
+  try {
     const image = new Image({
       data: req.file.buffer,
       contentType: req.file.mimetype,
-    })
+    });
 
     await image.save();
-    res.status(200).json(image)
-
-  }catch(error){
-    console.log(error)
-    res.status(500).json({message : "server error"})
+    res.status(200).json(image);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "server error" });
   }
-}
+};
 
-// image post method controller logic code 
-
-
-
-
-
+// image post method controller logic code
 
 module.exports = {
   createEmployee,
   getEmployees,
-  createUser,
+  createUser: [upload.single("image"), createUser],
   getUser,
   deleteUsers,
   delUserById,
@@ -197,5 +210,5 @@ module.exports = {
   delByIdEmp,
   findByOneEmp,
   updateByIdEmp,
-  uploadImage
+  uploadImage,
 };

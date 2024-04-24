@@ -21,6 +21,9 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    image : {
+      type : String
+    }
   },
   {
     timestamps: true,
@@ -28,23 +31,17 @@ const userSchema = new mongoose.Schema(
 );
 
  
-// image schema 
-
-const imageSchema = new mongoose.Schema({
-  data: Buffer,
-  contentType: String,
-})
-
+ 
 
 
 
 const Employee = mongoose.model("Employee", employeeSchema);
 const User = mongoose.model("User", userSchema);
-const Image = mongoose.model("Image", imageSchema)
+ 
 
 
 module.exports = {
   Employee,
   User,
-  Image
+ 
 };
