@@ -1,5 +1,17 @@
 const { Employee, User, Image } = require("../models/Employee");
 const multer = require("multer");
+const fs = require('fs');
+const path = require('path');
+
+const uploadDir = path.join(__dirname, 'uploads');
+
+// Check if the 'uploads' directory exists, if not, create it
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+  console.log('Uploads directory created successfully');
+} else {
+  console.log('Uploads directory already exists');
+}
 
 const createEmployee = async (req, res) => {
   try {
@@ -28,20 +40,17 @@ const createEmployee = async (req, res) => {
 
 // multer function code
 
+// Set up Multer storage
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    // Set the destination folder for uploaded files
-    cb(null, "uploads/images/"); // Save files in 'uploads/images/' directory
+    cb(null, "uploads/"); // Destination folder for uploaded files
   },
   filename: function (req, file, cb) {
-    // Generate a unique filename for the uploaded file
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    // Use the unique filename to avoid conflicts
-    cb(null, uniqueSuffix + '-' + file.originalname);
+    cb(null, file.originalname); // Use original file name
   },
 });
 
-// Initialize Multer with the custom storage options
+// Initialize Multer with storage options
 const upload = multer({ storage: storage });
 
 const createUser = async (req, res) => {
