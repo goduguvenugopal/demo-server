@@ -1,9 +1,8 @@
-const { Employee, User, Image } = require("../models/Employee");
+const { Employee, User} = require("../models/Employee");
 const multer = require("multer");
-const path = require('path');
-const fs = require('fs');
-const express = require('express');
-const app = express();
+ 
+ 
+ 
  
 
  
@@ -37,7 +36,7 @@ const createEmployee = async (req, res) => {
 // Set up Multer storage
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/"); // Destination folder for uploaded files
+    cb(null,  path.join(__dirname, "uploads/")); // Destination folder for uploaded files
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname); // Use original file name
@@ -47,8 +46,7 @@ const storage = multer.diskStorage({
 // Initialize Multer with storage options
 const upload = multer({ storage: storage });
 
-
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+ 
  
 
 const createUser = async (req, res) => {
