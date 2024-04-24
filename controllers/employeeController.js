@@ -1,18 +1,7 @@
 const { Employee, User, Image } = require("../models/Employee");
 const multer = require("multer");
-const fs = require('fs');
-const path = require('path');
-
-const uploadDir = path.join(__dirname, 'uploads');
-
-// Check if the 'uploads' directory exists, if not, create it
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir);
-  console.log('Uploads directory created successfully');
-} else {
-  console.log('Uploads directory already exists');
-}
-
+ 
+ 
 const createEmployee = async (req, res) => {
   try {
     const { name, phone, address } = req.body;
